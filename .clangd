@@ -5,7 +5,6 @@ CompileFlags:
     - -Wall
     - -Wextra
     - -Wpedantic
-    - -Wshadow
     - -Wvla
     - -Wformat=2
     - -Wcast-align
@@ -32,6 +31,7 @@ Diagnostics:
       - cppcoreguidelines-pro-bounds-constant-array-index
       - cppcoreguidelines-pro-bounds-pointer-arithmetic
       - modernize-redundant-void-arg
+      - modernize-use-auto
       - modernize-use-nullptr
       - performance-avoid-endl
       - readability-identifier-length
