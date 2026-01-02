@@ -37,8 +37,7 @@ Diagnostics:
       - readability-identifier-length
       - readability-implicit-bool-conversion
     CheckOptions:
-      readability-identifier-naming.FunctionCase: camelBack
-      readability-identifier-naming.VariableCase: camelBack
+      readability-identifier-naming.DefaultCase: camelBack
       readability-identifier-naming.ClassCase: CamelCase
       readability-identifier-naming.ConstantCase: UPPER_CASE
   UnusedIncludes: Strict
