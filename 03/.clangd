@@ -1,0 +1,4 @@
+Diagnostics:
+  ClangTidy:
+    Remove:
+      - cppcoreguidelines-non-private-member-variables-in-classes
