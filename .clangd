@@ -28,6 +28,7 @@ Diagnostics:
     Remove:
       - bugprone-easily-swappable-parameters
       - cppcoreguidelines-avoid-do-while
+      - cppcoreguidelines-avoid-magic-numbers
       - cppcoreguidelines-pro-bounds-constant-array-index
       - cppcoreguidelines-pro-bounds-pointer-arithmetic
       - modernize-redundant-void-arg
@@ -36,6 +37,7 @@ Diagnostics:
       - performance-avoid-endl
       - readability-identifier-length
       - readability-implicit-bool-conversion
+      - readability-magic-numbers
     CheckOptions:
       readability-identifier-naming.DefaultCase: camelBack
       readability-identifier-naming.ClassCase: CamelCase
