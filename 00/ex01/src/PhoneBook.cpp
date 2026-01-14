@@ -42,11 +42,11 @@ void PhoneBook::list_contacts(void) const
 		Contact contact = contacts[i];
 		std::cout << std::setw(COLUMN_WIDTH) << i << "|"
 				  << std::setw(COLUMN_WIDTH)
-				  << truncate_to_column(contact.firstName) << "|"
+				  << truncate_to_column(contact.firstName()) << "|"
 				  << std::setw(COLUMN_WIDTH)
-				  << truncate_to_column(contact.lastName) << "|"
+				  << truncate_to_column(contact.lastName()) << "|"
 				  << std::setw(COLUMN_WIDTH)
-				  << truncate_to_column(contact.nickname) << "|\n";
+				  << truncate_to_column(contact.nickname()) << "|\n";
 	}
 
 	std::cout << "---------------------------------------------" << std::endl;

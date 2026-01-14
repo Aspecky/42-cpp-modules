@@ -39,29 +39,32 @@ static std::string read_input(const std::string &msg)
 
 static void on_add(PhoneBook &book)
 {
-	Contact contact;
-
-	contact.firstName = read_input("First name: ");
-	if (contact.firstName.empty()) {
-		return;
-	}
-	contact.lastName = read_input("Last name: ");
-	if (contact.lastName.empty()) {
-		return;
-	}
-	contact.nickname = read_input("Nickname: ");
-	if (contact.nickname.empty()) {
-		return;
-	}
-	contact.phoneNumber = read_input("Phone: ");
-	if (contact.phoneNumber.empty()) {
-		return;
-	}
-	contact.secret = read_input("Darkest secret: ");
-	if (contact.secret.empty()) {
+	std::string firstName = read_input("First name: ");
+	if (firstName.empty()) {
 		return;
 	}
 
+	std::string lastName = read_input("Last name: ");
+	if (lastName.empty()) {
+		return;
+	}
+
+	std::string nickname = read_input("Nickname: ");
+	if (nickname.empty()) {
+		return;
+	}
+
+	std::string phoneNumber = read_input("Phone: ");
+	if (phoneNumber.empty()) {
+		return;
+	}
+
+	std::string secret = read_input("Darkest secret: ");
+	if (secret.empty()) {
+		return;
+	}
+
+	Contact contact(firstName, lastName, nickname, phoneNumber, secret);
 	book.add_contact(contact);
 }
 
