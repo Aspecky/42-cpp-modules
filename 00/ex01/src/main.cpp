@@ -67,12 +67,19 @@ static void on_add(PhoneBook &book)
 
 static void on_search(const PhoneBook &book)
 {
+	if (book.size() == 0) {
+		std::cout << "Phonebook is empty" << std::endl;
+		return;
+	}
+
 	book.list_contacts();
 
 	std::string line;
 
 	while (true) {
-		std::cout << "Choose contact [0 -> " << book.size() << "]: ";
+		int maxIdx = book.size() - 1;
+
+		std::cout << "Choose contact [0 -> " << maxIdx << "]: ";
 		if (!getline(std::cin, line)) {
 			break;
 		}
@@ -94,7 +101,7 @@ static void on_search(const PhoneBook &book)
 		}
 
 		int idx = atoi(line.c_str());
-		if (idx < 0 || idx > book.size()) {
+		if (idx < 0 || idx > maxIdx) {
 			std::cout << idx << " is out of range" << std::endl;
 			continue;
 		}
