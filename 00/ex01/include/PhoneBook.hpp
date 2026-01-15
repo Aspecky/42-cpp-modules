@@ -9,14 +9,14 @@ class PhoneBook {
   private:
 	Contact contacts[MAX_CONTACTS];
 	int index;
-	int _size;
+	int size_;
 
   public:
 	PhoneBook();
 
 	int size(void) const;
 
-	void add_contact(const Contact &contact);
-	void list_contacts(void) const;
+	void addConcat(const Contact &contact);
+	void listContacts(void) const;
 	Contact get_contact(int idx) const;
 };

@@ -4,21 +4,21 @@
 #include <iostream>
 #include <string>
 
-PhoneBook::PhoneBook() : index(0), _size(0)
+PhoneBook::PhoneBook() : index(0), size_(0)
 {
 }
 
 int PhoneBook::size() const
 {
-	return _size;
+	return size_;
 }
 
-void PhoneBook::add_contact(const Contact &contact)
+void PhoneBook::addConcat(const Contact &contact)
 {
 	contacts[index] = contact;
 	index = (index + 1) % MAX_CONTACTS;
-	if (_size < MAX_CONTACTS) {
-		_size++;
+	if (size_ < MAX_CONTACTS) {
+		size_++;
 	}
 }
 static std::string truncate_to_column(const std::string &str)
@@ -33,12 +33,12 @@ static std::string truncate_to_column(const std::string &str)
 	return copy;
 }
 
-void PhoneBook::list_contacts(void) const
+void PhoneBook::listContacts(void) const
 {
 	std::cout << "   Index  |First Name| Last Name| Nickname |" << "\n";
 	std::cout << "--------------------------------------------\n";
 
-	for (int i = 0; i < _size; i++) {
+	for (int i = 0; i < size_; i++) {
 		Contact contact = contacts[i];
 		std::cout << std::setw(COLUMN_WIDTH) << i << "|"
 				  << std::setw(COLUMN_WIDTH)

@@ -10,14 +10,18 @@ static std::string trim_string(const std::string &str)
 {
 	std::string::const_iterator start = str.begin();
 
-	while (start != str.end() && std::isspace(*start)) {
+	while (start < str.end() && std::isspace(*start)) {
 		start++;
 	}
 
-	std::string::const_iterator end = str.end();
-	do {
-		end--;
-	} while (end != start && std::isspace(*end));
+	if (start == str.end()) {
+		return "";
+	}
+
+	std::string::const_iterator end = str.end() - 1;
+	while (end > start && std::isspace(*end)) {
+		--end;
+	}
 
 	return std::string(start, end + 1);
 }
@@ -65,7 +69,7 @@ static void on_add(PhoneBook &book)
 	}
 
 	Contact contact(firstName, lastName, nickname, phoneNumber, secret);
-	book.add_contact(contact);
+	book.addConcat(contact);
 }
 
 static void on_search(const PhoneBook &book)
@@ -75,7 +79,7 @@ static void on_search(const PhoneBook &book)
 		return;
 	}
 
-	book.list_contacts();
+	book.listContacts();
 
 	std::string line;
 
@@ -87,6 +91,9 @@ static void on_search(const PhoneBook &book)
 			break;
 		}
 		line = trim_string(line);
+		if (line.empty()) {
+			continue;
+		}
 
 		bool isDigits = true;
 		for (size_t i = 0; i < line.length(); i++) {
@@ -128,6 +135,9 @@ int main()
 		}
 
 		line = trim_string(line);
+		if (line.empty()) {
+			continue;
+		}
 
 		if (line == "ADD") {
 			on_add(book);
