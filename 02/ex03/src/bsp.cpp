@@ -17,7 +17,6 @@ static Fixed area(Point const &p1, Point const &p2, Point const &p3)
 	return result;
 }
 
-// A function to check whether point lies inside the triangle formed by a, b, c
 bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	Fixed A = area(a, b, c);
