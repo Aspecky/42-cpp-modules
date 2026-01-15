@@ -39,40 +39,50 @@ static std::string read_input(const std::string &msg)
 
 static void on_add(PhoneBook &book)
 {
-	Contact contact;
-
-	contact.firstName = read_input("First name: ");
-	if (contact.firstName.empty()) {
-		return;
-	}
-	contact.lastName = read_input("Last name: ");
-	if (contact.lastName.empty()) {
-		return;
-	}
-	contact.nickname = read_input("Nickname: ");
-	if (contact.nickname.empty()) {
-		return;
-	}
-	contact.phoneNumber = read_input("Phone: ");
-	if (contact.phoneNumber.empty()) {
-		return;
-	}
-	contact.secret = read_input("Darkest secret: ");
-	if (contact.secret.empty()) {
+	std::string firstName = read_input("First name: ");
+	if (firstName.empty()) {
 		return;
 	}
 
+	std::string lastName = read_input("Last name: ");
+	if (lastName.empty()) {
+		return;
+	}
+
+	std::string nickname = read_input("Nickname: ");
+	if (nickname.empty()) {
+		return;
+	}
+
+	std::string phoneNumber = read_input("Phone: ");
+	if (phoneNumber.empty()) {
+		return;
+	}
+
+	std::string secret = read_input("Darkest secret: ");
+	if (secret.empty()) {
+		return;
+	}
+
+	Contact contact(firstName, lastName, nickname, phoneNumber, secret);
 	book.add_contact(contact);
 }
 
 static void on_search(const PhoneBook &book)
 {
+	if (book.size() == 0) {
+		std::cout << "Phonebook is empty" << std::endl;
+		return;
+	}
+
 	book.list_contacts();
 
 	std::string line;
 
 	while (true) {
-		std::cout << "Choose contact [0 -> " << book.size() << "]: ";
+		int maxIdx = book.size() - 1;
+
+		std::cout << "Choose contact [0 -> " << maxIdx << "]: ";
 		if (!getline(std::cin, line)) {
 			break;
 		}
@@ -94,7 +104,7 @@ static void on_search(const PhoneBook &book)
 		}
 
 		int idx = atoi(line.c_str());
-		if (idx < 0 || idx > book.size()) {
+		if (idx < 0 || idx > maxIdx) {
 			std::cout << idx << " is out of range" << std::endl;
 			continue;
 		}
