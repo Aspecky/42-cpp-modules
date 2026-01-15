@@ -1,5 +1,6 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include <cstddef>
 #include <iomanip>
 #include <iostream>
 #include <string>
@@ -23,14 +24,20 @@ void PhoneBook::addConcat(const Contact &contact)
 }
 static std::string truncate_to_column(const std::string &str)
 {
-	if (str.length() <= COLUMN_WIDTH) {
-		return str;
+	std::string ret = str;
+
+	for (size_t i = 0; i < ret.length(); ++i) {
+		if (ret[i] == '\t') {
+			ret[i] = ' ';
+		}
 	}
 
-	std::string copy = str.substr(0, COLUMN_WIDTH - 1);
-	copy.push_back('.');
+	if (ret.length() > COLUMN_WIDTH) {
+		ret = ret.substr(0, COLUMN_WIDTH - 1);
+		ret.push_back('.');
+	}
 
-	return copy;
+	return ret;
 }
 
 void PhoneBook::listContacts(void) const
