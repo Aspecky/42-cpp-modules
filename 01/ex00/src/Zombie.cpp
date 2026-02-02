@@ -2,9 +2,6 @@
 #include <iostream>
 #include <string>
 
-Zombie::Zombie() : name("Default")
-{
-}
 
 Zombie::Zombie(const std::string &name) : name(name)
 {

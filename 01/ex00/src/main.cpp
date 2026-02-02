@@ -13,7 +13,7 @@ int main()
 		Zombie z1;
 		z1.announce();
 		
-		Zombie z2("Zombie");
+		Zombie z2("Ghoul");
 		z2.announce();
 	}
 	{
