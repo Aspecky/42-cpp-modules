@@ -49,5 +49,3 @@ re: fclean all
 
 print-%:
 	@echo $($*)
-
-	
