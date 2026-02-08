@@ -3,10 +3,16 @@
 #include <ostream>
 #include <string>
 
+#define CLAPTRAP_DEFAULT_HEALTH 10
+#define CLAPTRAP_DEFAULT_ENERGY 10
+#define CLAPTRAP_DEFAULT_DAMAGE 0
+
 class ClapTrap {
   public:
-	ClapTrap(const std::string &name = "ClapTrap", unsigned int health = 10,
-			 unsigned int energy = 10, unsigned int damage = 0);
+	ClapTrap(const std::string &name = "ClapTrap",
+			 unsigned int health = CLAPTRAP_DEFAULT_HEALTH,
+			 unsigned int energy = CLAPTRAP_DEFAULT_ENERGY,
+			 unsigned int damage = CLAPTRAP_DEFAULT_DAMAGE);
 	ClapTrap(const ClapTrap &other);
 	virtual ~ClapTrap();
 

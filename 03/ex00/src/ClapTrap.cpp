@@ -3,8 +3,11 @@
 #include <iostream>
 #include <string>
 
-ClapTrap::ClapTrap(const std::string &name)
-	: name_(name), health_(10), energy_(10), damage_(0)
+static const std::string CLASS_NAME = "ClapTrap";
+
+ClapTrap::ClapTrap(const std::string &name, unsigned int health,
+				   unsigned int energy, unsigned int damage)
+	: name_(name), health_(health), energy_(energy), damage_(damage)
 {
 	std::cout << "ClapTrap(\"" << name << "\")" << std::endl;
 }
@@ -35,54 +38,63 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 	return *this;
 }
 
-std::ostream &ClapTrap::prefix() const
+std::ostream &ClapTrap::prefix(const std::string &className) const
 {
-	return std::cout << "ClapTrap" << "(\"" << name_ << "\") ";
+	return std::cout << className << "(\"" << name_ << "\") ";
 }
 
-bool ClapTrap::isDead(const std::string &action) const
+bool ClapTrap::isDead(const std::string &className,
+					  const std::string &action) const
 {
 	if (health_ == 0) {
-		prefix() << "can't " << action << " because it's dead" << std::endl;
+		prefix(className) << "can't " << action << " because it's dead"
+						  << std::endl;
 		return true;
 	}
 	return false;
 }
 
-bool ClapTrap::hasEnergy(const std::string &action) const
+bool ClapTrap::hasEnergy(const std::string &className,
+						 const std::string &action) const
 {
 	if (energy_ == 0) {
-		prefix() << "can't " << action << " because it's out of energy"
-				 << std::endl;
+		prefix(className) << "can't " << action << " because it's out of energy"
+						  << std::endl;
 		return true;
 	}
 	return false;
+}
+
+void ClapTrap::doAttack(const std::string &className, const std::string &target)
+{
+	if (isDead(className, "attack") || hasEnergy(className, "attack")) {
+		return;
+	}
+
+	--energy_;
+	prefix(className) << "dealt " << damage_ << " damage to " << target
+					  << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)
 {
-	if (isDead("attack") || hasEnergy("attack")) {
-		return;
-	}
-
-	prefix() << "dealt " << damage_ << " damage to " << target << std::endl;
-	--energy_;
+	doAttack(CLASS_NAME, target);
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (isDead("take damage")) {
+	if (isDead(CLASS_NAME, "take damage")) {
 		return;
 	}
-
 	health_ -= amount > health_ ? health_ : amount;
 
-	prefix() << "has taken " << amount << " damage" << std::endl;
+	prefix(CLASS_NAME) << "has taken " << amount << " damage" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (isDead("be repaired") || hasEnergy("be repaired")) {
+	if (isDead(CLASS_NAME, "be repaired") ||
+		hasEnergy(CLASS_NAME, "be repaired")) {
 		return;
 	}
 
@@ -90,6 +102,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 	health_ += amount > max ? max : amount;
 	--energy_;
 
-	std::cout << "ClapTrap " << name_ << " has been repaired by " << amount
-			  << " points" << std::endl;
+	prefix(CLASS_NAME) << "has been repaired by " << amount << " points"
+					   << std::endl;
 }

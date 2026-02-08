@@ -10,20 +10,23 @@ FragTrap::FragTrap(const std::string &name, unsigned int health,
 				   unsigned int energy, unsigned int damage)
 	: ClapTrap(name, health, energy, damage)
 {
-	std::cout << "Called FragTrap()\n";
+	std::cout << "FragTrap(\"" << name << "\")" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
+	std::cout << "FragTrap(FragTrap(\"" << other.name_ << "\"))" << std::endl;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << "Called ~FragTrap()\n";
+	std::cout << "~FragTrap(\"" << name_ << "\")" << std::endl;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &other)
 {
+	std::cout << "FragTrap(\"" << name_ << "\") = FragTrap(\"" << other.name_
+			  << "\")" << std::endl;
 	if (this != &other) {
 		ClapTrap::operator=(other);
 	}

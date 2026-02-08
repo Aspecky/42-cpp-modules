@@ -9,22 +9,26 @@ ClapTrap::ClapTrap(const std::string &name, unsigned int health,
 				   unsigned int energy, unsigned int damage)
 	: name_(name), health_(health), energy_(energy), damage_(damage)
 {
-	std::cout << "Called ClapTrap()\n";
+	std::cout << "ClapTrap(\"" << name << "\")" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other)
 	: name_(other.name_), health_(other.health_), energy_(other.energy_),
 	  damage_(other.damage_)
 {
+	std::cout << "ClapTrap(ClapTrap(\"" << other.name_ << "\"))" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Called ~ClapTrap()\n";
+	std::cout << "~ClapTrap(\"" << name_ << "\")" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
+	std::cout << "ClapTrap(\"" << name_ << "\") = ClapTrap(\"" << other.name_
+			  << "\")" << std::endl;
+
 	if (this != &other) {
 		name_ = other.name_;
 		health_ = other.health_;
