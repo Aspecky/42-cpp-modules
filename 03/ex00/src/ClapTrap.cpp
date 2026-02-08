@@ -3,27 +3,29 @@
 #include <iostream>
 #include <string>
 
-ClapTrap::ClapTrap() : name_("ClapTrap"), health_(10), energy_(10), damage_(0)
-{
-}
-
 ClapTrap::ClapTrap(const std::string &name)
 	: name_(name), health_(10), energy_(10), damage_(0)
 {
+	std::cout << "ClapTrap(\"" << name << "\")" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other)
 	: name_(other.name_), health_(other.health_), energy_(other.energy_),
 	  damage_(other.damage_)
 {
+	std::cout << "ClapTrap(ClapTrap(\"" << other.name_ << "\"))" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
+	std::cout << "~ClapTrap(\"" << name_ << "\")" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
+	std::cout << "ClapTrap(\"" << name_ << "\") = ClapTrap(\"" << other.name_
+			  << "\")" << std::endl;
+
 	if (this != &other) {
 		name_ = other.name_;
 		health_ = other.health_;
