@@ -14,7 +14,7 @@ class ClapTrap {
 			 unsigned int energy = CLAPTRAP_DEFAULT_ENERGY,
 			 unsigned int damage = CLAPTRAP_DEFAULT_DAMAGE);
 	ClapTrap(const ClapTrap &other);
-	virtual ~ClapTrap();
+	~ClapTrap();
 
 	ClapTrap &operator=(const ClapTrap &other);
 
