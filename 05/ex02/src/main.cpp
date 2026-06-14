@@ -1,6 +1,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include "PresidentialForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
@@ -28,9 +28,9 @@ int main()
 	highRank.signForm(robot);
 	highRank.executeForm(robot);
 
-	// --- PresidentialForm ---
-	std::cout << "\n=== PresidentialForm ===\n";
-	PresidentialForm president("Zaphod");
+	// --- PresidentialPardonForm ---
+	std::cout << "\n=== PresidentialPardonForm ===\n";
+	PresidentialPardonForm president("Zaphod");
 	highRank.signForm(president);
 	highRank.executeForm(president);
 
