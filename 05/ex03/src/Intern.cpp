@@ -17,10 +17,12 @@ Intern::~Intern()
 
 Intern::Intern(const Intern &other)
 {
+	(void)other;
 }
 
 Intern &Intern::operator=(Intern other)
 {
+	(void)other;
 	return *this;
 }
 
