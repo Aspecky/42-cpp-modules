@@ -50,7 +50,8 @@ template <typename T> void printTypes(T value)
 
 		std::cout << "float: ";
 		if (d < -std::numeric_limits<float>::max() ||
-			d > std::numeric_limits<float>::max()) {
+			d > std::numeric_limits<float>::max() ||
+			(d > 0 && d < std::numeric_limits<float>::min())) {
 			std::cout << "impossible\n";
 		}
 		else {
