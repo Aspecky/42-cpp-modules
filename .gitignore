@@ -3,6 +3,7 @@
 # Binaries
 convert
 template
+easyfind
 
 # Prerequisites
 *.d
