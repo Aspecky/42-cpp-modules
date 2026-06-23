@@ -5,6 +5,7 @@ convert
 template
 easyfind
 btc
+RPN
 
 # Prerequisites
 *.d
